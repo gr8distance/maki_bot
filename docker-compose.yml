@@ -20,7 +20,6 @@ services:
     build: .
     depends_on:
       - mariadb
-    environment:
-      DATABASE_URL: mysql2://root:pass@mariadb/api_server
+    env_file: .env
     volumes:
       - .:/app
