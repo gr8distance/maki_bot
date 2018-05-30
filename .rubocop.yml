@@ -1,0 +1,105 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+  DisplayCopNames: true
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 128 # cookpad style
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining # cookpad style
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Performance/Casecmp:
+  Enabled: false
+
+# FIXME:どちらかに統一するときが来たら修正する
+# NOTE: この指定方法だとwarningが出る
+Style/PercentLiteralDelimiters:
+  '%w': []
+  '%i': []
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 128
+
+Metrics/ClassLength:
+  Max: 128
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 20
+
+Style/IndentHash:
+  EnforcedStyle: consistent
+
+Style/IndentArray:
+  EnforcedStyle: consistent
+
+Naming/PredicateName:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: symmetrical
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Metrics/PerceivedComplexity:
+  Max: 8
+
+Style/GuardClause:
+  MinBodyLength: 3
