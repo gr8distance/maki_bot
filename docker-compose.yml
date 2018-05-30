@@ -4,8 +4,6 @@ services:
   kotori:
     image: api_server
     build: .
-    depends_on:
-      - mariadb
     env_file: .env
     volumes:
       - .:/app
