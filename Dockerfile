@@ -14,5 +14,4 @@ COPY . $APP_ROOT
 EXPOSE 3000
 
 ENTRYPOINT ["bundle", "exec"]
-# FIXME: あとでいろいろ書き換える
-CMD ["tail", "-f", "/dev/null"]
+CMD ["slappy", "start"]
