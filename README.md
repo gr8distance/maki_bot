@@ -1,24 +1,52 @@
-Kotori
+Maki
 ====
 
-Overview
+![http://dic.nicovideo.jp/oekaki/653514.png](http://dic.nicovideo.jp/oekaki/653514.png)
 
-![]()
-脳がとろける
+あぁかわいい...
+
+从廿_廿从 < アタリマエデショ！
+
+## New Feature
+
+* [x] Dockerで動く
+
+* [ ] 刺激的な内容をランダムにつぶやく
+
+* [ ] つぶやく内容をCSVでアップロードできる
+
+* [ ] つぶやく内容をActiveRecordを使って記録できる
+
+* [ ] githubAPIと連携していろいろできる
+
+* [ ] Googleカレンダーと連携して予定を教えてくれる
+
+* [x] かわいい♡
 
 ## Description
 
-## Demo
+めちゃくちゃ刺激的なSlackbot
 
-## VS.
+めちゃくちゃ可愛い
 
 ## Requirement
 
+* Docker
+
 ## Usage
+
+```
+# Dockerがあれば
+docker-compose build
+docker-compose up -d
+# で呼び出せる
+```
 
 ## Install
 
-## Contribution
+```
+git clone https://github.com/aimerald/maki
+```
 
 ## Licence
 
@@ -26,4 +54,4 @@ Overview
 
 ## Author
 
-[tcnksm](https://github.com/tcnksm)
+[tcnksm](https://github.com/aimerald)
