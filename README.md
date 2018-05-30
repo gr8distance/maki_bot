@@ -1,7 +1,7 @@
 Maki
 ====
 
-![http://dic.nicovideo.jp/oekaki/653514.png](http://dic.nicovideo.jp/oekaki/653514.png)
+![西木野真姫ちゃんのアイコン](https://github.com/aimerald/maki_bot/blob/master/images/maki.png)
 
 あぁかわいい...
 
@@ -54,4 +54,4 @@ git clone https://github.com/aimerald/maki
 
 ## Author
 
-[tcnksm](https://github.com/aimerald)
+[aimerald](https://github.com/aimerald)
