@@ -2,7 +2,7 @@ version: '3'
 
 services:
   maki:
-    image: api_server
+    image: maki
     build: .
     env_file: .env
     volumes:
