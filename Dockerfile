@@ -10,8 +10,4 @@ COPY Gemfile.lock Gemfile.lock
 RUN bundle install -j4
 
 COPY . $APP_ROOT
-
-EXPOSE 3000
-
-ENTRYPOINT ["bundle", "exec"]
-CMD ["slappy", "start"]
+CMD ["tail", "-f", "/dev/null"]
