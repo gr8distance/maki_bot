@@ -7,14 +7,18 @@ services:
   mariadb:
     image: mariadb
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    env_file: .env
-    ports:
-      - '3306'
+    environment:
+      MYSQL_USER: maki
+      MYSQL_PASSWORD: maki
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_DATABASE: maki
     volumes:
       - mysql:/var/lib/mysql
   maki:
     image: maki
     build: .
     env_file: .env
+    depends_on:
+      - mariadb
     volumes:
       - .:/app
