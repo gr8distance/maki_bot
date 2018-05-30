@@ -4,7 +4,7 @@ Slappy.configure do |config|
   # token:
   #   Slack API Token
   #
-  # config.token = ENV['SLACK_TOKEN']
+  config.token = ENV['SLACK_TOKEN']
 
   # scripts_path_dir:
   #   Slappy scripts directory.
@@ -47,7 +47,7 @@ Slappy.configure do |config|
   # username:
   #   Name of bot.
   #
-  # config.robot.username = 'slappy'
+  config.robot.username = 'にしきのまき'
 
   # channel:
   #   Channel, private group, or IM channel to send message to.
@@ -63,5 +63,5 @@ Slappy.configure do |config|
   # icon_url:
   #    URL to an image to use as the icon for this message
   #
-  # config.robot.icon_url = nil
+  config.robot.icon_url = 'http://dic.nicovideo.jp/oekaki/653514.png'
 end
