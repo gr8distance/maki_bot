@@ -1,5 +1,4 @@
 require './lib/models/serif'
-require './lib/models/tag'
 
 # FIXME: もしかしたらいらないかもしれないのでそのときは消す
 class String
@@ -27,14 +26,11 @@ end
 hear %r{(まき|真姫|)ちゃ(ん|ーん)} do |e|
   case e.text
   when /.*すごい/
-    tag = tags.find_by(id: 'てれ')
-    say maki(Weight::Lottery.execute(tag.serifs).text), channel: e.channel
+    say maki(Serif.lottery_weight('てれ').text), channel: e.channel
   when /.*(かわ|可愛)いい/
-    tag = tags.find_by(id: 'かわいい')
-    say maki(Weight::Lottery.execute(tag.serifs).text), channel: e.channel
+    say maki(Serif.lottery_weight('かわいい').text), channel: e.channel
   when /.*(筋肉|きんにく|muscle|Muscle)/
-    tag = tags.find_by(id: 'きんにく')
-    say maki(Weight::Lottery.execute(tag.serifs).text), channel: e.channel
+    say maki(Serif.lottery_weight('きんにく').text), channel: e.channel
   when /.*クラシック/
     classic_songs.each { |song| say maki(song), channel: e.channel }
     say maki('とかがいいんじゃない？'), channel: e.channel
@@ -43,6 +39,7 @@ hear %r{(まき|真姫|)ちゃ(ん|ーん)} do |e|
   end
 end
 
-hear /うーん/ do |e|
-  say maki('いみわかんない！'.to_kana), channel: e.channel
+hear /.*うーん/ do |e|
+  tag = tags.find_by(id: 'しんぱい')
+  say maki(Weight::Lottery.execute(tag.serifs).text), channel: e.channel
 end
