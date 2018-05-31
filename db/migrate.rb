@@ -11,4 +11,12 @@ def migrate_all(force: false)
 
     t.timestamps
   end
+
+  ActiveRecord::Migration.create_table(:asks, force: force, id: false) do |t|
+    t.string :id, primary_key: true
+    t.string :question, null: false, unique: true
+    t.string :answer, null: false
+
+    t.timestamps
+  end
 end

@@ -13,6 +13,12 @@ namespace :db do
   task :migrate_reset do
     migrate_all(force: true)
   end
+
+  desc 'DBの強制的なマイグレーションとCSVインポート'
+  task :migrate_reset_csv do
+    migrate_all(force: true)
+    CSV::AllImporter.execute
+  end
 end
 
 namespace :csv do
