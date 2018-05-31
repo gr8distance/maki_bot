@@ -13,7 +13,6 @@ COPY admin_tool/Gemfile.lock Gemfile.lock
 RUN bundle install -j4
 
 COPY ./admin_tool $APP_ROOT
-COPY ./lib/models $APP_ROOT/../lib/models
 
 EXPOSE 3000
 

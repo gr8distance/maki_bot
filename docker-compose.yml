@@ -27,6 +27,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.admin_tool
+    env_file: .env
     depends_on:
       - mariadb
     ports:
