@@ -22,3 +22,14 @@ services:
       - mariadb
     volumes:
       - .:/app
+  admin_tool:
+    image: admin_tool
+    build:
+      context: .
+      dockerfile: Dockerfile.admin_tool
+    depends_on:
+      - mariadb
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./admin_tool/.:/app

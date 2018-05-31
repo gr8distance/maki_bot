@@ -1,0 +1,3 @@
+[submodule "y"]
+	path = admin_tool
+	url = ./admin_tool/
