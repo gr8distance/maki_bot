@@ -12,6 +12,8 @@ ActiveAdmin.register Serif do
   #   permitted
   # end
   active_admin_importable do |model, hash|
-    model.create(id: hash[:id], text: hash[:text], tag_id: hash[:tag_id], weight: hash[:weight])
+    serif = model.find_or_initialize_by(text: hash[:text], tag_id: hash[:tag_id], weight: hash[:weight])
+    serif.prepare_save!
+    serif.save!
   end
 end
