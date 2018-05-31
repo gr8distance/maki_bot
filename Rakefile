@@ -1,4 +1,8 @@
 require './db/migrate'
+require './lib/models/serif.rb'
+require './lib/models/tag.rb'
+require 'pry'
+require './lib/csv/all_importer'
 
 namespace :db do
   desc 'DBのマイグレーション'
@@ -9,5 +13,11 @@ namespace :db do
   desc 'DBの強制的なマイグレーション'
   task :migrate_reset do
     migrate_all(force: true)
+  end
+end
+
+namespace :csv do
+  task :import_all do
+    CSV::AllImporter.execute
   end
 end
