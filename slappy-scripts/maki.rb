@@ -1,11 +1,5 @@
 require './lib/models/serif'
-
-# FIXME: もしかしたらいらないかもしれないのでそのときは消す
-class String
-  def to_kana
-    tr('ぁ-ん', 'ァ-ン')
-  end
-end
+require './lib/string'
 
 def maki(*word)
   if word.empty?
@@ -31,10 +25,11 @@ hear %r{(まき|真姫|)ちゃ(ん|ーん)} do |e|
     classic_songs.each { |song| say maki(song), channel: e.channel }
     say maki('とかがいいんじゃない？'), channel: e.channel
   else
-    say maki('ゔぇえ', 'な', 'なによー'), channel: e.channel
+    # FIXME: ネガポジ判定Gemを入れてその内容に合わせて返事を抽選
+    say maki(Serif.lottery_weight('その他').text), channel: e.channel
   end
 end
 
-hear /.*うーん/ do |e|
+hear %r{.*(うーん|しんどい|疲れた|つかれた)} do |e|
   say maki(Serif.lottery_weight('しんぱい').text), channel: e.channel
 end
