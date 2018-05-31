@@ -15,10 +15,6 @@ def maki(*word)
   end
 end
 
-def tags
-  @tags ||= Tag.all
-end
-
 def classic_songs
   %w[愛の夢 月の光 月光 雨だれ Etude25-10]
 end
@@ -40,6 +36,5 @@ hear %r{(まき|真姫|)ちゃ(ん|ーん)} do |e|
 end
 
 hear /.*うーん/ do |e|
-  tag = tags.find_by(id: 'しんぱい')
-  say maki(Weight::Lottery.execute(tag.serifs).text), channel: e.channel
+  say maki(Serif.lottery_weight('しんぱい').text), channel: e.channel
 end
