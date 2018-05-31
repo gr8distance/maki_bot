@@ -83,6 +83,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activerecord-import
+  activesupport
   mysql2
   pry
   rake
