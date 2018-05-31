@@ -1,7 +1,6 @@
+require 'pry'
 require './db/migrate'
 require './lib/models/serif.rb'
-require './lib/models/tag.rb'
-require 'pry'
 require './lib/csv/all_importer'
 
 namespace :db do
