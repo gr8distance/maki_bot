@@ -15,6 +15,7 @@ class CSV::AllImporter
           instances = csv_data.map do |data|
             build_privacy_policy(klass: klass, data: data, header: csv_header)
           end
+          instances.each(&:prepare_save!)
           klass.import!(instances)
           puts "从廿_廿从 < #{klass}"
         end
