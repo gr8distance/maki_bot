@@ -13,6 +13,9 @@ def classic_songs
   %w[愛の夢 月の光 月光 雨だれ Etude25-10]
 end
 
+@mode ||= 'bot'
+@memo ||= Memo.new(body: '')
+
 hear %r{(まき|真姫|)ちゃ(ん|ーん)} do |e|
   case e.text
   when /.*すごい/
@@ -32,4 +35,25 @@ end
 
 hear %r{.*(うーん|しんどい|疲れた|つかれた)} do |e|
   say maki(Serif.lottery_weight('しんぱい').text), channel: e.channel
+end
+
+# FIXME: これは必ずクラス化してライフサイクルを与えるべき
+hear /.*/ do |e|
+  if @mode == 'memo'
+    p @memo, @mode
+    @memo.body += (e.text + '\n')
+  end
+end
+
+hear %r{メモ.*(して|取って|とって)} do
+  @mode = 'memo'
+  @memo = Memo.new(body: '')
+  p @mode, @memo
+end
+
+hear %r{メモ.*(終わり|ここまで)} do
+  @memo.save!
+  @memo = nil
+  @mode = 'bot'
+  p @mode, @memo
 end
