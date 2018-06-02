@@ -19,4 +19,10 @@ def migrate_all(force: false)
 
     t.timestamps
   end
+
+  ActiveRecord::Migration.create_table(:memos, force: force) do |t|
+    t.string :body
+
+    t.timestamps
+  end
 end
