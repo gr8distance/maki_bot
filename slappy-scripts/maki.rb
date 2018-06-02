@@ -40,20 +40,19 @@ end
 # FIXME: これは必ずクラス化してライフサイクルを与えるべき
 hear /.*/ do |e|
   if @mode == 'memo'
-    p @memo, @mode
     @memo.body += (e.text + '\n')
   end
 end
 
-hear %r{メモ.*(して|取って|とって)} do
-  @mode = 'memo'
+hear %r{メモ.*(して|取って|とって)} do |e|
+  say maki('メモするわね'), channel: e.channel
   @memo = Memo.new(body: '')
-  p @mode, @memo
+  @mode = 'memo'
 end
 
-hear %r{メモ.*(終わり|ここまで)} do
+hear %r{メモ.*(終わり|ここまで)} do |e|
   @memo.save!
   @memo = nil
   @mode = 'bot'
-  p @mode, @memo
+  say maki('メモ書いたわよ'), channel: e.channel
 end
