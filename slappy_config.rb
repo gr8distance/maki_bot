@@ -47,7 +47,7 @@ Slappy.configure do |config|
   # username:
   #   Name of bot.
   #
-  config.robot.username = 'にしきのまき'
+  config.robot.username = ENV['BOT_NAME']
 
   # channel:
   #   Channel, private group, or IM channel to send message to.
@@ -63,5 +63,5 @@ Slappy.configure do |config|
   # icon_url:
   #    URL to an image to use as the icon for this message
   #
-  config.robot.icon_url = 'http://dic.nicovideo.jp/oekaki/653514.png'
+  config.robot.icon_url = ENV['BOT_IMAGE']
 end
