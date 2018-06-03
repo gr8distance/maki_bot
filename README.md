@@ -1,4 +1,4 @@
-Maki
+MakiBot
 ====
 
 ![西木野真姫ちゃんのアイコン](https://github.com/aimerald/maki_bot/blob/master/images/maki.png)
@@ -7,7 +7,7 @@ Maki
 
 从廿_廿从 < アタリマエデショ！
 
-## New Feature
+## Feature
 
 * [x] Dockerで動く
 
