@@ -12,27 +12,41 @@ def active_channels
 end
 
 def reply(event)
-  if active_channels.include?(event.data.channel)
-    event.channel
+  return event.channel if active_channels.include?(event.data.channel)
+end
+
+# FIXME: そのうちログファイルに書き出す
+def create_log(event, replied)
+  {
+    channel: event.data.channel,
+    message: event.text,
+    replied: replied
+  }
+end
+
+def branch_emotion(event)
+  case event.text
+  when /.*(すごい|天才|てんさい)/
+    'てれ'
+  when /.*(かわ|可愛)いい/
+    'かわいい'
+  when /.*(筋肉|きんにく|muscle|Muscle)/
+    'きんにく'
   else
-    ENV['DEFAULT_CHANNEL']
+    'その他'
   end
 end
 
 hear %r{(まき|真姫)ちゃ(ん|ーん)} do |e|
   channel = reply(e)
-  tag = case e.text
-        when /.*(すごい|天才|てんさい)/
-          'てれ'
-        when /.*(かわ|可愛)いい/
-          'かわいい'
-        when /.*(筋肉|きんにく|muscle|Muscle)/
-          'きんにく'
-        else
-          'その他'
-        end
-  say Serif.lottery_weight(tag).text, channel: channel
-  Log.create!(channel: e.data.channel, message: e.text, tag: tag)
+  replied = false
+  unless channel.nil?
+    emotion = branch_emotion(e)
+    say Serif.lottery_weight(emotion).text, channel: channel
+    Log.create!(channel: channel, tag: emotion, message: e.text)
+    replied = true
+  end
+  logger.info(create_log(e, replied))
 end
 
 hear %r{.*(うーん|しんどい|疲れた|つかれた)} do |e|
