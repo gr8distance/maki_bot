@@ -32,4 +32,12 @@ def migrate_all(force: false)
 
     t.timestamps
   end
+
+  ActiveRecord::Migration.create_table(:logs, force: force) do |t|
+    t.string :channel
+    t.string :tag
+    t.string :message
+
+    t.timestamps
+  end
 end
