@@ -1,8 +1,9 @@
 require 'pry'
 require './db/migrate'
-require './lib/models/serif.rb'
-require './lib/models/ask.rb'
+require './lib/models/serif'
+require './lib/models/ask'
 require './lib/csv/all_importer'
+require './lib/models/active_channel'
 
 namespace :db do
   desc 'DBのマイグレーション'
