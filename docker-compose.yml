@@ -31,6 +31,6 @@ services:
     depends_on:
       - mariadb
     ports:
-      - '3001:3000'
+      - '4001:3000'
     volumes:
       - ./admin_tool/.:/app
