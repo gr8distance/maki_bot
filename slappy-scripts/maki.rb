@@ -29,7 +29,7 @@ hear %r{(まき|真姫)ちゃ(ん|ーん)} do |e|
         when /.*(筋肉|きんにく|muscle|Muscle)/
           'きんにく'
         else
-          'その他'u
+          'その他'
         end
   say Serif.lottery_weight(tag).text, channel: channel
   Log.create!(channel: e.data.channel, message: e.text, tag: tag)
