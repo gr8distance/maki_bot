@@ -1,5 +1,5 @@
 require './lib/models/serif'
-require './lib/models/log'
+require './lib/log'
 require './lib/models/active_channel'
 require './lib/string'
 
@@ -15,20 +15,11 @@ def reply(event)
   return event.channel if active_channels.include?(event.data.channel)
 end
 
-# FIXME: そのうちログファイルに書き出す
-def create_log(event, replied)
-  {
-    channel: event.data.channel,
-    message: event.text,
-    replied: replied
-  }
-end
-
 def deliver(regex, emotion)
   hear regex do |e|
     channel = reply(e)
     say Serif.lottery_weight(emotion).text, channel: channel
-    Log.create!(channel: e.data.channel, message: e.text, tag: emotion)
+    Log.new(emotion: emotion, event: e).write
   end
 end
 
@@ -51,10 +42,9 @@ hear %r{(まき|真姫)ちゃ(ん|ーん)} do |e|
   unless channel.nil?
     emotion = branch_emotion(e)
     say Serif.lottery_weight(emotion).text, channel: channel
-    Log.create!(channel: channel, tag: emotion, message: e.text)
     replied = true
   end
-  logger.info(create_log(e, replied))
+  Log.new(emotion: emotion, event: e, replied: replied).write
 end
 
 conditions = {
@@ -71,4 +61,5 @@ hear %r{巻ちゃん} do |e|
   channel = reply(e)
   say 'ショッ!', channel: channel
   say 'ッテ、何言ワセンノヨ！', channel: channel
+  Log.new(emotion: emotion, event: e).write
 end
