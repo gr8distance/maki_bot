@@ -1,3 +1,6 @@
 [submodule "y"]
 	path = admin_tool
 	url = ./admin_tool/
+[submodule "lib/negapoji"]
+	path = lib/negapoji
+	url = https://github.com/hatt0519/negapoji.git
