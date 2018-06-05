@@ -67,3 +67,9 @@ hear %r{#{hooks}} do |e|
   say Serif.lottery_weight('通常').text, channel: channel
   Log.create!(channel: e.data.channel, message: e.text, tag: '通常')
 end
+
+hear %r{巻ちゃん} do |e|
+  channel = reply(e)
+  say 'ショッ!', channel: channel
+  say 'ッテ、何言ワセンノヨ！', channel: channel
+end
