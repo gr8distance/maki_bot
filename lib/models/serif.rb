@@ -1,3 +1,4 @@
+require './lib/weight/lottery'
 require './lib/models/base'
 
 class Serif < Base
@@ -14,7 +15,7 @@ class Serif < Base
 
   class << self
     def lottery_weight(tag)
-      ::Weight::Lottery.execute(where(tag_id: tag))
+      Weight::Lottery.execute(where(tag_id: tag))
     end
   end
 end
