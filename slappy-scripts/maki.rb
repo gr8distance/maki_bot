@@ -73,3 +73,8 @@ hear %r{巻ちゃん} do |e|
   say 'ショッ!', channel: channel
   say 'ッテ、何言ワセンノヨ！', channel: channel
 end
+
+hear %r{(ラブライス|お米|ご飯|ごはん|おこめ)} do |e|
+  channel = reply(e)
+  say Serif.lottery_weight('はなよ').text, channel: channel
+end
