@@ -1,5 +1,3 @@
-require 'lograge'
-
 class Log
   attr_reader :type, :emotion, :event, :replied
   def initialize(params)
@@ -10,9 +8,11 @@ class Log
   end
 
   def write
+    log = format
     File.open(export_path, 'a') do |f|
-      f.puts(format)
+      f.puts(log)
     end
+    Logger.new(STDOUT).info(log)
   end
 
   private
