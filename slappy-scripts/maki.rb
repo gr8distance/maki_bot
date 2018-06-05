@@ -63,3 +63,9 @@ hear %r{巻ちゃん} do |e|
   say 'ッテ、何言ワセンノヨ！', channel: channel
   Log.new(emotion: emotion, event: e).write
 end
+
+hear %r{ちゃんまき} do |e|
+  channel = reply(e)
+  say Serif.lottery_weight('おこ').text, channel: channel
+  Log.new(emotion: 'おこ', event: e).write
+end
