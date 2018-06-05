@@ -24,6 +24,14 @@ def create_log(event, replied)
   }
 end
 
+def deliver(regex, emotion)
+  hear regex do |e|
+    channel = reply(e)
+    say Serif.lottery_weight(emotion).text, channel: channel
+    Log.create!(channel: e.data.channel, message: e.text, tag: emotion)
+  end
+end
+
 def branch_emotion(event)
   case event.text
   when /.*(すごい|天才|てんさい)/
@@ -49,32 +57,18 @@ hear %r{(まき|真姫)ちゃ(ん|ーん)} do |e|
   logger.info(create_log(e, replied))
 end
 
-hear %r{.*(うーん|しんどい|疲れた|つかれた)} do |e|
-  channel = reply(e)
-  say Serif.lottery_weight('しんぱい').text, channel: channel
-  Log.create!(channel: e.data.channel, message: e.text, tag: 'しんぱい')
-end
-
-hear %r{(帰る|かえる)} do |e|
-  channel = reply(e)
-  say Serif.lottery_weight('おつかれ').text, channel: channel
-  Log.create!(channel: e.data.channel, message: e.text, tag: 'おつかれ')
-end
-
-hooks = '(眠|ねむ)い'
-hear %r{#{hooks}} do |e|
-  channel = reply(e)
-  say Serif.lottery_weight('通常').text, channel: channel
-  Log.create!(channel: e.data.channel, message: e.text, tag: '通常')
+conditions = {
+  'しんぱい' => %r{.*(うーん|しんどい|疲れた|つかれた)},
+  'おつかれ' => %r{(帰る|かえる)},
+  'はなよ' => %r{(ラブライス|お米|ご飯|ごはん|おこめ)},
+  'ねむい' => '(眠|ねむ)い'
+}
+conditions.each do |k, v|
+  deliver(v, k)
 end
 
 hear %r{巻ちゃん} do |e|
   channel = reply(e)
   say 'ショッ!', channel: channel
   say 'ッテ、何言ワセンノヨ！', channel: channel
-end
-
-hear %r{(ラブライス|お米|ご飯|ごはん|おこめ)} do |e|
-  channel = reply(e)
-  say Serif.lottery_weight('はなよ').text, channel: channel
 end
