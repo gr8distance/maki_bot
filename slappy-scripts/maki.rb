@@ -32,8 +32,6 @@ def branch_emotion(event)
     'かわいい'
   when /.*(筋肉|きんにく|muscle|Muscle)/
     'きんにく'
-  when /(ラブライス|お米)/
-    'はなよ'
   else
     'その他'
   end
@@ -74,4 +72,9 @@ hear %r{巻ちゃん} do |e|
   channel = reply(e)
   say 'ショッ!', channel: channel
   say 'ッテ、何言ワセンノヨ！', channel: channel
+end
+
+hear %r{(ラブライス|お米|ご飯|ごはん|おこめ)} do |e|
+  channel = reply(e)
+  say Serif.lottery_weight('はなよ').text, channel: channel
 end
