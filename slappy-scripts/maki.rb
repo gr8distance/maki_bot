@@ -32,6 +32,8 @@ def branch_emotion(event)
     'かわいい'
   when /.*(筋肉|きんにく|muscle|Muscle)/
     'きんにく'
+  when /(ラブライス|お米)/
+    'はなよ'
   else
     'その他'
   end
