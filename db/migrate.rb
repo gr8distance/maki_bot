@@ -32,4 +32,10 @@ def migrate_all(force: false)
 
     t.timestamps
   end
+
+  ActiveRecord::Migration.create_table(:tags, force: force, id: :string) do |t|
+    t.string :cond, null: false
+
+    t.timestamps
+  end
 end
