@@ -4,6 +4,7 @@ require './lib/models/serif'
 require './lib/models/ask'
 require './lib/csv/all_importer'
 require './lib/models/active_channel'
+require './lib/models/tag'
 
 namespace :db do
   desc 'DBのマイグレーション'
