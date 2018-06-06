@@ -9,8 +9,10 @@ class Base < ActiveRecord::Base
   end
 
   class << self
-    def like_search(query)
-      where('cond LIKE(?)', "%#{query}%")
+    def like_search(queries)
+      queries.flat_map do |query|
+        where('cond LIKE(?)', "%#{query}%")
+      end
     end
   end
 end

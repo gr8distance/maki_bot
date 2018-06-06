@@ -2,6 +2,7 @@ require './lib/models/serif'
 require './lib/log'
 require './lib/models/active_channel'
 require './lib/string'
+require 'natto'
 
 hello do
   logger.info '起きたわよ'
@@ -23,9 +24,23 @@ def deliver(regex, emotion)
   end
 end
 
+@nm = Natto::MeCab.new
+
 hear %r{.*} do |e|
+  channel = reply(e)
   if e.text.match(%r{(まき|真姫)ちゃ(ん|ーん)})
-    words = nm.enum_parse(e.text)
+    text = e.text
+    words = @nm.enum_parse(text).map(&:surface).reject(&:empty?).uniq
+    words = words.reject { |word| ['まき', 'ちゃん', 'ちゃーん'].include? word }
+    words << 'まきちゃん'
+    if words == ['まきちゃん']
+      words << '*'
+    end
+    tags = Tag.like_search(words)
+    s = tags.sample&.lottery_weight
+    unless s.nil?
+      say s.text, channel: channel
+    end
   end
 end
 
