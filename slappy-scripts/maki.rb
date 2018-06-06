@@ -61,7 +61,7 @@ hear %r{巻ちゃん} do |e|
   channel = reply(e)
   say 'ショッ!', channel: channel
   say 'ッテ、何言ワセンノヨ！', channel: channel
-  Log.new(emotion: emotion, event: e).write
+  Log.new(emotion: '巻ちゃん', event: e).write
 end
 
 hear %r{ちゃんまき} do |e|
