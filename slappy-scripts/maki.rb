@@ -69,3 +69,9 @@ hear %r{ちゃんまき} do |e|
   say Serif.lottery_weight('おこ').text, channel: channel
   Log.new(emotion: 'おこ', event: e).write
 end
+
+hear %r{チャンスなのでは} do |e|
+  channel = reply(e)
+  say 'そうね、それでやってみるといいんじゃない？', channel: channel
+  Log.new(emotion: 'チャンス', event: e).write
+end
