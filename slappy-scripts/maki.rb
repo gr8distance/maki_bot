@@ -51,7 +51,7 @@ conditions = {
   'しんぱい' => %r{.*(うーん|しんどい|疲れた|つかれた)},
   'おつかれ' => %r{(帰る|かえる)},
   'はなよ' => %r{(ラブライス|お米|ご飯|ごはん|おこめ)},
-  'ねむい' => '(眠|ねむ)い'
+  'ねむい' => '(眠|ねむ)い',
 }
 conditions.each do |k, v|
   deliver(v, k)
@@ -74,4 +74,10 @@ hear %r{チャンスなのでは} do |e|
   channel = reply(e)
   say 'そうね、それでやってみるといいんじゃない？', channel: channel
   Log.new(emotion: 'チャンス', event: e).write
+end
+
+hear %r{お腹空いた} do |e|
+  channel = reply(e)
+  say Time.now.strftime('%Y-%m-%d %H:%M'), channel: channel
+  Log.new(emotion: 'くうふく', event: e).write
 end
