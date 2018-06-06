@@ -1,2 +1,4 @@
 .env*
 /csv/active_channel.csv
+/logs/*
+!/logs/.keep
