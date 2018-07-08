@@ -7,4 +7,12 @@ class Base < ActiveRecord::Base
   def prepare_save!
     nil
   end
+
+  class << self
+    def like_search(queries)
+      queries.flat_map do |query|
+        where('cond LIKE(?)', "%#{query}%")
+      end
+    end
+  end
 end
