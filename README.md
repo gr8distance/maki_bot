@@ -53,7 +53,7 @@ docker-compose up -d
 ## Install
 
 ```
-git clone https://github.com/aimerald/maki
+git clone https://github.com/aimerald/maki_bot
 ```
 
 ## Licence
