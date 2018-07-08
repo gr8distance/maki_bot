@@ -7,12 +7,9 @@ hello do
   logger.info '起きたわよ'
 end
 
-def active_channels
-  @active_channels ||= ActiveChannel.all.pluck(:id)
-end
-
 def reply(event)
-  return event.channel if active_channels.include?(event.data.channel)
+  # NOTE: なんか条件を付ける必要が出たときはそれに合わせて対応する
+  event.channel
 end
 
 def deliver(regex, emotion)
