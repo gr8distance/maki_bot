@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: maki-bot
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  labels:
+    app: maki-bot
+    role: master
+    tier: backend
+spec:
+  replicas: 1
+  # selector can be applied automatically
+  # from the labels in the pod template if not set
+  # selector:
+  #   app: guestbook
+  #   role: master
+  #   tier: backend
+  template:
+    metadata:
+      labels:
+        app: maki-bot
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: master
+        image: suzaku183/maki-bot
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
